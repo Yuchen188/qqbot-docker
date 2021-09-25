@@ -34,33 +34,6 @@
                     </div>
                 </div>
                 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-                    <legend>go-cqhttp配置</legend>
-                </fieldset>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">Http协议</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="cqhttpHttp" id="cqhttpHttp" lay-verify="required" value="http://192.168.31.99:8000" lay-reqtext="Http协议必填" autocomplete="off" class="layui-input">
-                        <div class="layui-form-mid layui-word-aux">
-                            填写示例：http://192.168.2.199:8000
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">WS协议</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="cqhttpWS" id="cqhttpWS" lay-verify="required" lay-reqtext="WS协议必填" value="ws://192.168.31.99:8001" placeholder="" autocomplete="off" class="layui-input">
-                        <div class="layui-form-mid layui-word-aux">
-                            填写示例：ws://192.168.2.199:8001
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">机器人管理员QQ</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="ManagerQQ" id="ManagerQQ" lay-verify="required" lay-reqtext="机器人管理员QQ" placeholder="请输入管理员QQ号码，请确保管理员QQ和机器人互为好友。" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
                     <legend>用户名密码配置</legend>
                 </fieldset>
                 <div class="layui-form-item">
@@ -109,20 +82,19 @@
             });
             //监听提交
             form.on('submit(install)', function (data) {
+
                 data = data.field;
                 if (data.PassWord != data.PassWord1) {
                     layer.msg("两次密码输入不一致！", { icon: 5 });
                     return false;
                 }
+
                 layer.confirm('请确认您要提交的配置，如果数据库配置错误将无法启动。', function (index) {
                     $.post("/api/install", {
                         UserName: data.UserName,
                         PassWord: data.PassWord,
                         DBType: data.DBType,
-                        DBAddress: data.DBAddress,
-                        cqhttpWS: data.cqhttpWS,
-                        ManagerQQ: data.ManagerQQ,
-                        cqhttpHttp: data.cqhttpHttp
+                        DBAddress: data.DBAddress
                     }, function (e) {
                         if (e.Code == 200) {
                             var index = layer.msg('配置完成，请重新启动容器后访问！', function () {
@@ -136,6 +108,8 @@
                         }
                     });
                 });
+
+
                 return false;
             });
         });

@@ -115,7 +115,7 @@
                         shadeClose: true,
                         shade: false,
                         maxmin: true, //开启最大化最小化按钮
-                        area: ['800px', '850px'],
+                        area: ['800px', '600px'],
                         content: 'install.html'
                     });
                 }
@@ -146,6 +146,7 @@
                             window.location = '../index.html';
                         });
                     } else {
+                        debugger
                         layer.msg(e.Message, { icon: 5 });
                     }
                 });
