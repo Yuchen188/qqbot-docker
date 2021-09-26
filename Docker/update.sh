@@ -1,1 +1,1 @@
-cd .. && git checkout . && git pull
+cd /app && git checkout . && git pull
