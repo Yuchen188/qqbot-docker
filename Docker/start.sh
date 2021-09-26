@@ -1,1 +1,1 @@
-cd ../linux-x64 && chmod 777 QQBot.Web && nohup ./QQBot.Web &
+cd /app/linux-x64 && chmod 777 QQBot.Web && nohup ./QQBot.Web &
